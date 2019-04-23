@@ -165,3 +165,8 @@ def fish():
 def vegetarian():
     return render_template('foodtype/vegetarian.html',
     recipes = mongo.db.recipes.find({"food_type" : "Vegetarian"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/vegan')
+def vegan():
+    return render_template('foodtype/vegan.html',
+    recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
