@@ -110,3 +110,8 @@ def delete_allergy(allergy_name):
 def europe():
     return render_template('continents/europe.html',
     recipes = mongo.db.recipes.find({"continent_name" : "Europe"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/namerica')
+def namerica():
+    return render_template('continents/namerica.html',
+    recipes = mongo.db.recipes.find({"continent_name" : "North America"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
