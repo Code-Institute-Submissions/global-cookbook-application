@@ -43,11 +43,29 @@ def insert_recipe():
         'recipe_instructions3': request.form.get('recipe_instructions3'),
         'recipe_instructions4': request.form.get('recipe_instructions4'),
         'allergy_name': request.form.get('allergy_name'),
+        'likes': 0,
+        'dislikes': 0
     })
     return redirect(url_for('get_cookbook'))
     
 @app.route('/view_recipe/<recipe_id>', methods=["POST", "GET"])
 def view_recipe(recipe_id):
+    voted = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)},
+        {
+            "likes" : 1,
+            'dislikes': 1
+        })
+    vote_storage = []
+    vote_storage.append(voted)
+    if request.method == "POST":
+        if request.form['likesdislikes'] == "like":
+            likes = vote_storage[0]["likes"] + 1
+            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id) }, { '$set' : { "likes" : likes}})
+            return redirect(url_for('get_cookbook'))
+        elif request.form['likesdislikes'] == "dislike":
+            dislikes = vote_storage[0]['dislikes'] + 1
+            mongo.db.recipes.update_one( {'_id': ObjectId(recipe_id) },  {'$set': { 'dislikes' : dislikes }} )
+            return redirect(url_for('get_cookbook'))
     return render_template('recipes/viewrecipe.html',
     recipes = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)}))
     
@@ -76,6 +94,8 @@ def update_recipe(recipe_id):
         'recipe_instructions3': request.form.get('recipe_instructions3'),
         'recipe_instructions4': request.form.get('recipe_instructions4'),
         'allergy_name': request.form.get('allergy_name'),
+        'likes': 0,
+        'dislikes': 0
     })
     return redirect(url_for('get_cookbook'))
     

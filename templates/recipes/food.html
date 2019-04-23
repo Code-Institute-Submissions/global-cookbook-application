@@ -25,14 +25,18 @@
             </ul>
         </div>
         <div class="row">
-            <div class="col 4">
+            <div class="col 3">
                 <a href="{{url_for('view_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button deep-orange">View</a>
             </div>
-            <div class = "col 4">
+            <div class = "col 3">
                 <a href="{{url_for('edit_recipe', recipe_name = recipe._id)}}"class="waves-effect waves-light btn  food_button orange">Edit</a>
             </div>
-            <div class="col 4">
+            <div class="col 3">
                 <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button black">Delete</a>
+            </div>
+            <div class="col 3">
+                <strong>Likes: {{ recipe.likes }}</strong>
+                <strong>Dislikes: {{recipe.dislikes}}</strong>
             </div>
         </div>
     </ul>
