@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, Blueprint
-from flask_pymongo import PyMongo, pymongo
+from flask_pymongo import PyMongo, pymongo#
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'cookbook-database'
@@ -30,6 +31,39 @@ def add_recipe():
 def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(
+    {
+        'continent_name': request.form.get("continent_name"),
+        'recipe_name': request.form.get("recipe_name"),
+        'food_type': request.form.get("food_type"),
+        'recipe_time': request.form.get('recipe_time'),
+        'recipe_servings': request.form.get('recipe_servings'),
+        'recipe_ingredients': request.form.get('recipe_ingredients'),
+        'recipe_instructions1': request.form.get('recipe_instructions1'),
+        'recipe_instructions2': request.form.get('recipe_instructions2'),
+        'recipe_instructions3': request.form.get('recipe_instructions3'),
+        'recipe_instructions4': request.form.get('recipe_instructions4'),
+        'allergy_name': request.form.get('allergy_name'),
+    })
+    return redirect(url_for('get_cookbook'))
+    
+@app.route('/view_recipe/<recipe_id>', methods=["POST", "GET"])
+def view_recipe(recipe_id):
+    return render_template('recipes/viewrecipe.html',
+    recipes = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)}))
+    
+@app.route('/edit_recipe/<recipe_name>')
+def edit_recipe(recipe_name):
+    recipes = mongo.db.recipes.find_one({"_id": ObjectId(recipe_name)})
+    return render_template('recipes/editrecipe.html', 
+    continents = mongo.db.continents.find(),
+    foods = mongo.db.foods.find(),
+    allergies = mongo.db.allergies.find(),
+    recipes=recipes)
+    
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+def update_recipe(recipe_id):
+    recipe = mongo.db.recipes
+    recipe.update({"_id": ObjectId(recipe_id)},
     {
         'continent_name': request.form.get("continent_name"),
         'recipe_name': request.form.get("recipe_name"),

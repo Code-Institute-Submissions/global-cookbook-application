@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<h3 class= "center-align ">Edit Your Recipe</h3>
+<div class="row">
+    <form action="{{url_for('update_recipe', recipe_id = recipes._id)}}" method='POST' class="col s12">
+        <div class="row">
+            <div class="input-field col s12 ">
+                <select id="continent_name" name="continent_name" required>
+                    <option value="" disabled selected>Choose your Continent</option>
+                    {% for continents in continents %}
+                    {% if recipes.continent_name == continents.continent_name %}
+                    <option value = "{{continents.continent_name}}" selected>{{continents.continent_name}}</option>
+                    {% else %}
+                    <option value="{{continents.continent_name}}">{{continents.continent_name}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_name" name = "recipe_name" type="text" class="validate" value="{{recipes.recipe_name}}" required>
+                <label for="icon_prefix" class="">Recipe Name</label>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_time" name = "recipe_time" type="text" class="validate" value="{{recipes.recipe_time}}" required>
+                <label for="icon_prefix" class="">Cooking Time</label>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_servings" name = "recipe_servings" type="number" class="validate" min="1" max="8" value="{{recipes.recipe_servings}}" required>
+                <label for="recipe_servings" class="">Number of servingse</label>
+            </div>
+            <div class="input-field col s12 ">
+                <select id="food_type" name="food_type" required>
+                    <option value="" disabled selected>Choose your Recipe Type</option>
+                    {% for foods in foods %}
+                    {% if recipes.food_type == foods.food_type%}
+                    <option value = "{{foods.food_type}}" selected>{{foods.food_type}}</option>
+                    {% else %}
+                    <option value="{{foods.food_type}}">{{foods.food_type}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class= "input-field col s12 ">
+                <textarea id="textarea1" class="materialize-textarea" id="recipe_ingredients" name = "recipe_ingredients" type="text" class="validate" value="{{recipes.recipe_ingredients}}" required>{{recipes.recipe_ingredients}}</textarea>
+                <label for="recipe_ingredients" class="" >Recipe Ingredients List</label>
+            </div>
+            <div class="input-field col s12 ">
+                <h5 class=""> Recipe Instructions</h5>
+                <textarea name="recipe_instructions1" id="recipe_instructions1"id="textarea1" class="materialize-textarea" type="text" class="validate" value="{{recipes.recipe_instructions1}}" required>{{recipes.recipe_instructions1}}</textarea>
+                <textarea name="recipe_instructions2" id="recipe_instructions2"id="textarea1" class="materialize-textarea" type="text" class="validate" value="{{recipes.recipe_instructions2}}">{{recipes.recipe_instructions2}}</textarea>
+                <textarea name="recipe_instructions3" id="recipe_instructions3"id="textarea1" class="materialize-textarea" type="text" class="validate" value="{{recipes.recipe_instructions3}}">{{recipes.recipe_instructions3}}</textarea>
+                <textarea name="recipe_instructions4" id="recipe_instructions4"id="textarea1" class="materialize-textarea" type="text" class="validate" value="{{recipes.recipe_instructions4}}">{{recipes.recipe_instructions4}}</textarea>
+            </div>
+            <div class="input-field col s12 ">
+                <select id="allergy_name" name="allergy_name" required>
+                    <option value="" disabled selected>Choose an Allergen</option>
+                    {% for allergies in allergies %}
+                    {% if recipes.allergy_name == allergies.allergy_name %}
+                    <option value = "{{allergies.allergy_name}}" selected>{{allergies.allergy_name}}</option>
+                    {% else %}
+                    <option value="{{allergies.allergy_name}}">{{allergies.allergy_name}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light btn center-align orange" id="edit-recipe" type="submit" name="action">Save Recipe</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
