@@ -150,3 +150,8 @@ def beef():
 def lamb():
     return render_template('foodtype/lamb.html',
     recipes = mongo.db.recipes.find({"food_type" : "Lamb"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/pork')
+def pork():
+    return render_template('foodtype/pork.html',
+    recipes = mongo.db.recipes.find({"food_type" : "Pork"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
