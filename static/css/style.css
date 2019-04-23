@@ -1,0 +1,26 @@
+.food_header{
+    margin-top: 5px;
+}
+
+.btn_home {
+    height: 150px;
+    width: 300px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 60px;
+    margin: 30px;
+}
+
+li {
+    font-family: helvetica;
+    font-style: bold;
+}
+
+img {
+    position: inline-block;
+}
+
+.body {
+    font-size: 25px;
+}
