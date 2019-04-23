@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class= "center-align">Lamb Recipes</h3>
+{% for recipe in recipes %}
+    {% if recipe.food_type == "Lamb" %}
+    
+       <div class="row">
+            <ul class="collapsible col s12 m12 l9 offset-l2 blue-grey darken-1" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header blue-grey darken-1">
+                        <div class="col 12">
+                            <i class="material-icons">expand_more</i>
+                            <strong class="align-center">{{recipe.recipe_name}} - {{recipe.food_type}} - {{recipe.continent_name}}  - {{recipe.allergy_name}}</strong> 
+                        </div>
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>Ingredients: {{recipe.recipe_ingredients}}</li>
+                            <br/>
+                            <p>Instructions:</p> 
+                            <li>1) {{recipe.recipe_instructions1}}</li>
+                            <br>
+                            <li>2) {{recipe.recipe_instructions2}}</li>
+                            <br>
+                            <li>3) {{recipe.recipe_instructions3}}</li>
+                            <br>
+                            <li>4) {{recipe.recipe_instructions4}}</li>
+                    </div>
+        </div>
+    {% endif %}
+
+{% endfor %}
+    <div class = "row"> 
+        <div class ="col s12 m12 l9 offset-l2">
+            <a href="{{url_for('add_recipe')}}"class="waves-effect waves-light btn blue">Add Recipe</a>
+        </div>
+    </div>
+
+    
+
+{% endblock %}
