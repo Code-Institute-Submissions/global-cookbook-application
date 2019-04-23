@@ -31,6 +31,9 @@
             <div class = "col 4">
                 <a href="{{url_for('edit_recipe', recipe_name = recipe._id)}}"class="waves-effect waves-light btn  food_button orange">Edit</a>
             </div>
+            <div class="col 4">
+                <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button black">Delete</a>
+            </div>
         </div>
     </ul>
 </div>

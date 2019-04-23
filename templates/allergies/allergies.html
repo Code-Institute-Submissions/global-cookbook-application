@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class= "center-align ">All Allergens</h3>
+<div class="row">
+    <div class ="col s12 m12 l9 offset-l2 ">
+        {% if count > 1 or count == 0 %}
+        <p>There are currently <strong> {{ count }} </strong> allergens recorded</p>
+        {% else %}
+        <p>There is currently <strong> {{ count }} </strong> allergen recorded</p>
+        {% endif %}
+    </div>
+</div>
+{% for allergies in allergies %}
+<div class="row">
+    <ul>
+        <div class="col s6 m6 l5 offset-l2">
+            <strong class="align-center ">{{allergies.allergy_name}}</strong>
+        </div>
+        <div >
+            <a href="{{url_for('delete_allergy', allergy_name = allergies._id)}}" class="waves-effect waves-light btn food_button black">Delete</a>
+        </div>
+</div>
+        {% endfor %}
+    </ul>
+    <div class = "row"> 
+        <div class ="col s12 m12 l9 offset-l2">
+            <a href="{{url_for('new_allergy')}}"class="waves-effect waves-light btn blue">Add Allergy</a>
+        </div>
+    </div>
+ 
+{% endblock %}

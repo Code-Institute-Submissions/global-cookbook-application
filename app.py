@@ -78,3 +78,30 @@ def update_recipe(recipe_id):
         'allergy_name': request.form.get('allergy_name'),
     })
     return redirect(url_for('get_cookbook'))
+    
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id":ObjectId(recipe_id)})
+    return redirect(url_for('get_cookbook'))
+    
+@app.route('/allergies')
+def allergies():
+    return render_template('allergies/allergies.html',
+    count = mongo.db.allergies.find().count(),
+    allergies = mongo.db.allergies.find())
+    
+@app.route('/new_allergy')
+def new_allergy():
+    return render_template('allergies/addallergy.html', 
+    allergies = mongo.db.allergies.find())
+    
+@app.route('/insert_allergy', methods=["POST"])
+def insert_allergy():
+    allergies = mongo.db.allergies
+    allergies.insert_one(request.form.to_dict())
+    return redirect(url_for('allergies'))
+    
+@app.route('/delete_allergy/<allergy_name>')
+def delete_allergy(allergy_name):
+    mongo.db.allergies.remove({"_id": ObjectId(allergy_name)})
+    return redirect(url_for('allergies'))

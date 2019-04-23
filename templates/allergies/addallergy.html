@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<h3 class= "center-align ">Add A New Allergy</h3>
+<div class="row">
+    <form action="{{url_for('insert_allergy')}}" method='POST' class="col s12">
+        <div class="row">
+            <div class="input-field col s12 ">
+                <input id="allergy_name" name = "allergy_name" type="text" class="validate" required>
+                <label for="allergy_name" class="">Allergy Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light btn-small center-align blue" type="submit" name="action">Add Allergy</button>
+        </div>
+    </form>
+</div>
+    
+{% endblock %}
