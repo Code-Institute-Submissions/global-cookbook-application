@@ -120,3 +120,8 @@ def namerica():
 def samerica():
     return render_template('continents/samerica.html',
     recipes = mongo.db.recipes.find({"continent_name" : "South America"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/asia')
+def asia():
+    return render_template('continents/asia.html',
+    recipes = mongo.db.recipes.find({"continent_name" : "Asia"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
