@@ -105,3 +105,8 @@ def insert_allergy():
 def delete_allergy(allergy_name):
     mongo.db.allergies.remove({"_id": ObjectId(allergy_name)})
     return redirect(url_for('allergies'))
+    
+@app.route('/europe')
+def europe():
+    return render_template('continents/europe.html',
+    recipes = mongo.db.recipes.find({"continent_name" : "Europe"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
