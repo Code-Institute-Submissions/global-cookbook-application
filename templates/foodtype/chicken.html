@@ -39,6 +39,25 @@
     {% endif %}
 
 {% endfor %}
+
+<div class="row">
+        <div class ="col s12 m12 l9 offset-l2">
+            <nav class="white">
+                <ul class="pagination ">
+                    {% if 1 == (offset|int) %}
+                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('prev_chicken_page', offset=offset|int-1) }}">Previous</a></li>
+                    {% else %}
+                    <li class="page-item "><a class="page-link " href="{{ url_for('prev_chicken_page', offset=offset|int-1) }}">Previous</a></li>
+                    {% endif %}
+                    {% if count <= (offset|int)*5 %}
+                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('next_chicken_page', offset=offset|int+1) }}">Next</a></li>
+                    {% else %}
+                    <li class="page-item "><a class="page-link " href="{{ url_for('next_chicken_page', offset=offset|int+1) }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+  </div>
     <div class = "row"> 
         <div class ="col s12 m12 l9 offset-l2">
             <a href="{{url_for('add_recipe')}}"class="waves-effect waves-light btn blue">Add Recipe</a>

@@ -14,7 +14,9 @@ def home():
     
 @app.route('/cookbook', methods=["POST","GET"])
 def get_cookbook():
+    offset= 1
     return render_template('recipes/food.html',
+    offset = offset,
     continents = mongo.db.continents.find(),
     allergies = mongo.db.allergies.find(),
     foods = mongo.db.foods.find(),
@@ -128,65 +130,104 @@ def delete_allergy(allergy_name):
     
 @app.route('/europe')
 def europe():
+    offset= 1
     return render_template('continents/europe.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "Europe"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "Europe"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/namerica')
 def namerica():
+    offset = 1
     return render_template('continents/namerica.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "North America"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "North America"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
-    
+
 @app.route('/samerica')
 def samerica():
+    offset = 1
     return render_template('continents/samerica.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "South America"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "South America"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/asia')
 def asia():
+    offset = 1
     return render_template('continents/asia.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "Asia"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "Asia"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/africa')
 def africa():
+    offset = 1
     return render_template('continents/africa.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "Africa"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "Africa"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/australia')
 def australia():
+    offset = 1
     return render_template('continents/australia.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"continent_name" : "Australia"}).count(),
     recipes = mongo.db.recipes.find({"continent_name" : "Australia"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
-    
+
 @app.route('/chicken')
 def chicken():
+    offset = 1
     return render_template('foodtype/chicken.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Chicken"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Chicken"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/beef')
 def beef():
+    offset = 1
     return render_template('foodtype/beef.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Beef"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Beef"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
-    
+
 @app.route('/lamb')
 def lamb():
+    offset = 1
     return render_template('foodtype/lamb.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Lamb"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Lamb"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/pork')
 def pork():
+    offset = 1
     return render_template('foodtype/pork.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Pork"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Pork"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/fish')
 def fish():
+    offset = 1
     return render_template('foodtype/fish.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Fish"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Fish"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/vegetarian')
 def vegetarian():
+    offset = 1
     return render_template('foodtype/vegetarian.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Vegetarian"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Vegetarian"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
 @app.route('/vegan')
 def vegan():
+    offset = 1
     return render_template('foodtype/vegan.html',
+    offset = offset,
+    count = mongo.db.recipes.find({"food_type" : "Vegan"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
