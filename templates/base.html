@@ -7,6 +7,14 @@
     </head>
     <body class="body">
         <header>
+            <ul id='dropdown1' class='dropdown-content green'>
+                <li><a href="{{ url_for('africa')}}"><span class="white-text">Africa</span></a></li>
+                <li><a href="{{ url_for('asia')}}"><span class="white-text">Asia</span></a></li>
+                <li><a href="{{ url_for('australia')}}"><span class="white-text">Australia</span></a></li>
+                <li><a href="{{ url_for('europe')}}"><span class="white-text">Europe</span></a></li>
+                <li><a href="{{ url_for('namerica')}}"><span class="white-text">North America</span></a></li>
+                <li><a href="{{ url_for('samerica')}}"><span class="white-text">South America</span></a></li>
+            </ul>
             <nav>
                 <div class="nav-wrapper green">
                     <a class="brand-logo center"></a>
@@ -16,6 +24,7 @@
                         <li><a href="{{url_for('get_cookbook')}}">All Recipes</a></li>
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
                         <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
+                        <li><a class='dropdown-button1' href='#' data-activates='dropdown1'>Continents</a></li>
                     </ul>
                 </div>
             </nav>
