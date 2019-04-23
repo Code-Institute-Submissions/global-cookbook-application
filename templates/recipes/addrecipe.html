@@ -1,0 +1,62 @@
+{% extends 'base.html' %} 
+{% block content %}
+<h3 class= "center-align">Add A New Recipe</h3>
+<div class="row">
+    <form action="{{url_for('insert_recipe')}}" method='POST' class="col s12">
+        <div class="row">
+            <div class="input-field col s12 ">
+                <select id="continents" name="continent_name">
+                    <option class="" value="" disabled selected>Choose a Continent</option>
+                    {% for continents in continents %}
+                    <option value = "{{continents.continent_name}}">{{continents.continent_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_name" name = "recipe_name" type="text" class="validate" required>
+                <label for="icon_prefix" >Recipe Name</label>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_time" name = "recipe_time" type="text" class="validate" required>
+                <label for="icon_prefix" >Cooking Time</label>
+            </div>
+            <div class="input-field col s12 ">
+                <input id="recipe_servings" name = "recipe_servings" type="number" class="validate" min="1" max="8" required>
+                <label for="recipe_servings" >Number of servings</label>
+            </div>
+            <div class="input-field col s12 ">
+                <select id="food_type" name="food_type">
+                    <option value="" disabled selected>Choose the Recipe Type</option>
+                    {% for foods in foods%}
+                    <option value = "{{foods.food_type}}">{{foods.food_type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class= "input-field col s12 ">
+                <input id="recipe_ingredients" name = "recipe_ingredients" type="text" class="validate" required>
+                <label for="recipe_ingredients" class="">Recipe Ingredients List</label>
+            </div>
+            <div class="input-field col s12 ">
+                <h5> Recipe Instructions</h5>
+                <ol>
+                    <li><input id="recipe_instructions1" name = "recipe_instructions1" type="text" class="validate" required></li>
+                    <li><input id="recipe_instructions2" name = "recipe_instructions2" type="text" class="validate"></li>
+                    <li><input id="recipe_instructions3" name = "recipe_instructions3" type="text" class="validate"></li>
+                    <li><input id="recipe_instructions4" name = "recipe_instructions4" type="text" class="validate"></li>
+                </ol>
+            </div>
+            <div class="input-field col s12 ">
+                <select id="allergies" name="allergy_name">
+                    <option class="" value="" disabled selected>Choose an Allergen</option>
+                    {% for allergies in allergies %}
+                    <option value = "{{allergies.allergy_name}}">{{allergies.allergy_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light btn-small center-align blue" type="submit" name="action">Add Recipe</button>
+            </div>
+        </div>
+    </form>
+</div>      
+{% endblock %}
