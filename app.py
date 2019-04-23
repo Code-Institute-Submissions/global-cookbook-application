@@ -135,3 +135,9 @@ def africa():
 def australia():
     return render_template('continents/australia.html',
     recipes = mongo.db.recipes.find({"continent_name" : "Australia"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/chicken')
+def chicken():
+    return render_template('foodtype/chicken.html',
+    recipes = mongo.db.recipes.find({"food_type" : "Chicken"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
