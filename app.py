@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, B
 from flask_pymongo import PyMongo, pymongo#
 from bson.objectid import ObjectId
 from flask_bcrypt import bcrypt
+import pygal
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'cookbook-database'
@@ -458,3 +459,23 @@ def prev_myrecipes_page(offset):
     count = mongo.db.recipes.find({'users': session['username']}).count()
     recipes = mongo.db.recipes.find({'users': session['username']}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
     return render_template('recipes/myrecipes.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/stats')
+def stats():
+    a_chart = pygal.Bar()
+    a_chart.title = "Recipes By Continent"
+    a_chart.add("Europe", mongo.db.recipes.find({"continent_name" : "Europe"}).count())
+    a_chart.add("North America", mongo.db.recipes.find({"continent_name" : "North America"}).count())
+    a_chart.add("South America", mongo.db.recipes.find({"continent_name" : "South America"}).count())
+    a_chart.add("Asia", mongo.db.recipes.find({"continent_name" : "Asia"}).count())
+    a_chart.add("Africa", mongo.db.recipes.find({"continent_name" : "Africa"}).count())
+    a_chart.add("Australia", mongo.db.recipes.find({"continent_name" : "Australia"}).count())
+    chart1 = a_chart.render_data_uri()
+    
+    return render_template( 'stats.html', chart1 = chart1)
+
+if __name__ == '__main__':
+    app.secret_key = 'mysecret'
+    app.run(host=os.environ.get('IP'),
+    port=int(os.environ.get('PORT')),
+    debug=True)
