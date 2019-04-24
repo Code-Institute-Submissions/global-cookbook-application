@@ -472,7 +472,18 @@ def stats():
     a_chart.add("Australia", mongo.db.recipes.find({"continent_name" : "Australia"}).count())
     chart1 = a_chart.render_data_uri()
     
-    return render_template( 'stats.html', chart1 = chart1)
+    b_chart = pygal.HorizontalBar()
+    b_chart.title = "Recipes By Food Type"
+    b_chart.add("Beef", mongo.db.recipes.find({"food_type" : "Beef"}).count())
+    b_chart.add("Chicken", mongo.db.recipes.find({"food_type" : "Chicken"}).count())
+    b_chart.add("Fish", mongo.db.recipes.find({"food_type" : "Fish"}).count())
+    b_chart.add("Lamb", mongo.db.recipes.find({"food_type" : "Lamb"}).count())
+    b_chart.add("Pork", mongo.db.recipes.find({"food_type" : "Pork"}).count())
+    b_chart.add("Vegan", mongo.db.recipes.find({"food_type" : "Vegan"}).count())
+    b_chart.add("Vegetarian", mongo.db.recipes.find({"food_type" : "Vegetarian"}).count())
+    chart2 = b_chart.render_data_uri()
+    
+    return render_template( 'stats.html', chart1 = chart1, chart2 = chart2)
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
