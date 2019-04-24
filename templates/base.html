@@ -37,12 +37,18 @@
                     <a class="brand-logo center"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        {% if session['username'] %}
                         <li><a href="{{url_for('home')}}">Home</a></li>
                         <li><a href="{{url_for('get_cookbook')}}">All Recipes</a></li>
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
                         <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
                         <li><a class='dropdown-button1' href='#' data-activates='dropdown1'>Continents</a></li>
                         <li><a class='dropdown-button3' href='#' data-activates='dropdown3'>Food Types</a></li>
+                        <li><a href="{{url_for('logout') }}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('index') }}"><span class="white-text">Login</a></li>
+                        <li><a href="{{ url_for('register') }}"><span class="white-text">Register</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="side-nav green" id="mobile-demo">
                     {% if session['username'] %}
