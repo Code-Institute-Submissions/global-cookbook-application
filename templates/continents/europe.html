@@ -2,6 +2,7 @@
 {% block content %}
 <h3 class= "center-align ">European Recipes</h3>
 <div class="row">
+    <!-- Displays the number of recipes for the chosen page -->
     <div class ="col s12 m12 l9 offset-l2 ">
         {% if count > 1 or count == 0 %}
         <p>There are currently <strong> {{ count }} </strong> recipes to explore</p>
@@ -13,6 +14,7 @@
 {% for recipe in recipes %}
 {% if recipe.continent_name == "Europe" %}
 <div class="row">
+    <!-- Collapsible header that displays basic infroamtion about the recipe -->
     <ul class="collapsible col s12 m12 l9 offset-l2 blue" data-collapsible="accordion">
         <div class="collapsible-header blue">
             <div class="col 12">
@@ -20,6 +22,7 @@
                 <strong class="align-center ">{{recipe.recipe_name}} - {{recipe.food_type}} - {{recipe.continent_name}}  - {{recipe.allergy_name}}</strong> 
             </div>
         </div>
+        <!-- Collapsible body that displays more information about an individual recipe -->
         <div class="collapsible-body ">
             <p>Created by:<strong> {{recipe.users}}</strong></p>
             <ul>
@@ -34,18 +37,20 @@
                 <br>
                 <li>4) {{recipe.recipe_instructions4}}</li>
         </div>
+        <!-- Allows the user to see the fully detailed view for the recipe -->
         <div class="row">
-                        <div class="col 4">
-                            <a href="{{url_for('view_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button deep-orange">View</a>
-                        </div>
-                        <div class="col 4">
-                            <strong>Likes: {{ recipe.likes }}</strong>
-                            <strong>Dislikes: {{recipe.dislikes}}</strong>
-                        </div>
-                    </div>
+            <div class="col 4">
+                 <a href="{{url_for('view_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button deep-orange">View</a>
+            </div>
+            <div class="col 4">
+                <strong>Likes: {{ recipe.likes }}</strong>
+                <strong>Dislikes: {{recipe.dislikes}}</strong>
+            </div>
+        </div>
     </div>
     {% endif %}
 {% endfor %}
+<!-- Pagination logic for the given page -->
 <div class="row">
         <div class ="col s12 m12 l9 offset-l2">
             <nav class="white">
