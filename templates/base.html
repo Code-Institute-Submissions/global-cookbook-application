@@ -4,6 +4,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link rel="stylesheet" href ="static/css/style.css">
+        
     </head>
     <body class="body">
         <header>
@@ -32,32 +33,52 @@
                 <li><a href="{{ url_for('vegan')}}"><span class="white-text">Vegan</span></a></li>
                 <li><a href="{{ url_for('vegetarian')}}"><span class="white-text">Vegetarian</span></a></li>
             </ul>
+            <ul id='dropdown4' class='dropdown-content green'>
+                <li><a href="{{ url_for('beef')}}"><span class="white-text">Beef</span></a></li>
+                <li><a href="{{ url_for('chicken')}}"><span class="white-text">Chicken</span></a></li>
+                <li><a href="{{ url_for('fish')}}"><span class="white-text">Fish</span></a></li>
+                <li><a href="{{ url_for('lamb')}}"><span class="white-text">Lamb</span></a></li>
+                <li><a href="{{ url_for('pork')}}"><span class="white-text">Pork</span></a></li>
+                <li><a href="{{ url_for('vegan')}}"><span class="white-text">Vegan</span></a></li>
+                <li><a href="{{ url_for('vegetarian')}}"><span class="white-text">Vegetarian</span></a></li>
+            </ul>
             <nav>
                 <div class="nav-wrapper green">
                     <a class="brand-logo center"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        {% if session['username'] %}
+                    {% if session['username'] %}
                         <li><a href="{{url_for('home')}}">Home</a></li>
                         <li><a href="{{url_for('get_cookbook')}}">All Recipes</a></li>
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
-                        <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
                         <li><a class='dropdown-button1' href='#' data-activates='dropdown1'>Continents</a></li>
                         <li><a class='dropdown-button3' href='#' data-activates='dropdown3'>Food Types</a></li>
+                        <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
+                        <li><a href="{{url_for('myrecipes')}}">My Recipes</a></li>
+                        <li><a href="{{url_for('stats')}}">Stats</a></li>
                         <li><a href="{{url_for('logout') }}">Logout</a></li>
-                        {% else %}
+                    {% else %}
                         <li><a href="{{ url_for('index') }}"><span class="white-text">Login</a></li>
                         <li><a href="{{ url_for('register') }}"><span class="white-text">Register</a></li>
-                        {% endif %}
+                    {% endif %}
                     </ul>
                     <ul class="side-nav green" id="mobile-demo">
                     {% if session['username'] %}
                         <li><a href="{{url_for('home')}}"><span class="white-text">Home</span></a></li>
                         <li><a href="{{url_for('get_cookbook')}}"><span class="white-text">All Recipes</span></a></li>
                         <li><a href="{{url_for('add_recipe')}}"><span class="white-text">New Recipe</span></a></li>
-                        <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
                         <li><a class='dropdown-button2' href="#" data-activates='dropdown2'><span class="white-text">Continents</span></a></li>
-                </div>
+                        <li><a class='dropdown-button4' href='#' data-activates='dropdown4'><span class="white-text">Food Types</span></a></li>
+                        <li><a href="{{ url_for('allergies')}}"><span class="white-text">Allergens</span></a></li>
+                        <li><a href="{{url_for('myrecipes')}}"><span class="white-text">My Recipes</span></a></li>
+                        <li><a href="{{url_for('stats')}}"><span class="white-text">Stats</span></a></li>
+                        <li><a href="{{url_for('logout') }}"><span class="white-text">Logout</span></a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}"><span class="white-text">Login</span></a></li>
+                        <li><a href="{{ url_for('register') }}"><span class="white-text">Register</span></a></li>
+                    {% endif %}
+                    </ul>
+                </div>    
             </nav>
         </header>
         <div class="container">
@@ -66,15 +87,20 @@
                
             {% endblock %}
         </div>
-    </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function(){
             $('.collapsible').collapsible();
             $('select').material_select();
             $(".button-collapse").sideNav();
+            $('.dropdown-button1').dropdown();
+            $('.dropdown-button2').dropdown();
+            $('.dropdown-button3').dropdown();
+            $('.dropdown-button4').dropdown();
+            $('.content').slice(0, 4).show();
         });
         </script>
-</html>
+    </body>
     
+</html>
