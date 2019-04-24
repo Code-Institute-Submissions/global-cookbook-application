@@ -15,6 +15,23 @@
                 <li><a href="{{ url_for('namerica')}}"><span class="white-text">North America</span></a></li>
                 <li><a href="{{ url_for('samerica')}}"><span class="white-text">South America</span></a></li>
             </ul>
+            <ul id='dropdown2' class='dropdown-content green'>
+                <li><a href="{{ url_for('africa')}}"><span class="white-text">Africa</span></a></li>
+                <li><a href="{{ url_for('asia')}}"><span class="white-text">Asia</span></a></li>
+                <li><a href="{{ url_for('australia')}}"><span class="white-text">Australia</span></a></li>
+                <li><a href="{{ url_for('europe')}}"><span class="white-text">Europe</span></a></li>
+                <li><a href="{{ url_for('namerica')}}"><span class="white-text">North America</span></a></li>
+                <li><a href="{{ url_for('samerica')}}"><span class="white-text">South America</span></a></li>
+            </ul>
+            <ul id='dropdown3' class='dropdown-content green'>
+                <li><a href="{{ url_for('beef')}}"><span class="white-text">Beef</span></a></li>
+                <li><a href="{{ url_for('chicken')}}"><span class="white-text">Chicken</span></a></li>
+                <li><a href="{{ url_for('fish')}}"><span class="white-text">Fish</span></a></li>
+                <li><a href="{{ url_for('lamb')}}"><span class="white-text">Lamb</span></a></li>
+                <li><a href="{{ url_for('pork')}}"><span class="white-text">Pork</span></a></li>
+                <li><a href="{{ url_for('vegan')}}"><span class="white-text">Vegan</span></a></li>
+                <li><a href="{{ url_for('vegetarian')}}"><span class="white-text">Vegetarian</span></a></li>
+            </ul>
             <nav>
                 <div class="nav-wrapper green">
                     <a class="brand-logo center"></a>
@@ -25,7 +42,15 @@
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
                         <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
                         <li><a class='dropdown-button1' href='#' data-activates='dropdown1'>Continents</a></li>
+                        <li><a class='dropdown-button3' href='#' data-activates='dropdown3'>Food Types</a></li>
                     </ul>
+                    <ul class="side-nav green" id="mobile-demo">
+                    {% if session['username'] %}
+                        <li><a href="{{url_for('home')}}"><span class="white-text">Home</span></a></li>
+                        <li><a href="{{url_for('get_cookbook')}}"><span class="white-text">All Recipes</span></a></li>
+                        <li><a href="{{url_for('add_recipe')}}"><span class="white-text">New Recipe</span></a></li>
+                        <li><a href="{{ url_for('allergies')}}">Allergens</a></li>
+                        <li><a class='dropdown-button2' href="#" data-activates='dropdown2'><span class="white-text">Continents</span></a></li>
                 </div>
             </nav>
         </header>
