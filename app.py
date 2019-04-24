@@ -271,6 +271,14 @@ def vegan():
     count = mongo.db.recipes.find({"food_type" : "Vegan"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
     
+@app.route('/myrecipes')
+def myrecipes():
+    offset = 1
+    return render_template('recipes/myrecipes.html',
+    offset = offset,
+    count = mongo.db.recipes.find({'users': session['username']}).count(),
+    recipes = mongo.db.recipes.find({'users': session['username']}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
 @app.route('/page<offset>', methods=['POST', 'GET'])
 def next_page(offset):
     count = mongo.db.recipes.find().count()
@@ -438,3 +446,15 @@ def prev_vegetarian_page(offset):
     count = mongo.db.recipes.find({"food_type" : "Vegetarian"}).count()
     recipes = mongo.db.recipes.find({"food_type" : "Vegetarian"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
     return render_template('foodtype/vegetarian.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/myrecipes<offset>', methods=['POST', 'GET'])
+def next_myrecipes_page(offset):
+    count = mongo.db.recipes.find({'users': session['username']}).count()
+    recipes = mongo.db.recipes.find({'users': session['username']}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('recipes/myrecipes.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/myrecipes<offset>', methods=['POST', 'GET'])
+def prev_myrecipes_page(offset):
+    count = mongo.db.recipes.find({'users': session['username']}).count()
+    recipes = mongo.db.recipes.find({'users': session['username']}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('recipes/myrecipes.html', recipes=recipes, offset=offset, count=count)

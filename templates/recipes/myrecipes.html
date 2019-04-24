@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3 class= "center-align">Fish Recipes</h3>
+<h3 class= "center-align">My Recipes</h3>
 <div class="row">
     <div class ="col s12 m12 l9 offset-l2 ">
         {% if count > 1 or count == 0 %}
@@ -11,15 +11,14 @@
     </div>
 </div>
 {% for recipe in recipes %}
-    {% if recipe.food_type == "Fish" %}
-    
+    {% if recipe.users == session['username']%}
        <div class="row">
-            <ul class="collapsible col s12 m12 l9 offset-l2 teal" data-collapsible="accordion">
+            <ul class="collapsible col s12 m12 l9 offset-l2 green" data-collapsible="accordion">
                 <li>
-                    <div class="collapsible-header teal">
+                    <div class="collapsible-header green">
                         <div class="col 12">
                             <i class="material-icons">expand_more</i>
-                            <strong class="align-center">{{recipe.recipe_name}} - {{recipe.food_type}} - {{recipe.continent_name}}  - {{recipe.allergy_name}}</strong> 
+                            <strong class="align-center">{{recipe.recipe_name}} - {{recipe.food_type}} - {{recipe.continent_name}}</strong> 
                         </div>
                     </div>
                     <div class="collapsible-body">
@@ -37,31 +36,32 @@
                             <li>4) {{recipe.recipe_instructions4}}</li>
                     </div>
                     <div class="row">
+                        <div class = "col 4">
+                            <a href="{{url_for('edit_recipe', recipe_name = recipe._id)}}"class="waves-effect waves-light btn  food_button orange">Edit</a>
+                        </div>
                         <div class="col 4">
                             <a href="{{url_for('view_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button deep-orange">View</a>
                         </div>
                         <div class="col 4">
-                            <strong>Likes: {{ recipe.likes }}</strong>
-                            <strong>Dislikes: {{recipe.dislikes}}</strong>
+                            <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button black">Delete</a>
                         </div>
                     </div>
         </div>
     {% endif %}
-
 {% endfor %}
 <div class="row">
         <div class ="col s12 m12 l9 offset-l2">
             <nav class="white">
                 <ul class="pagination ">
                     {% if 1 == (offset|int) %}
-                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('prev_fish_page', offset=offset|int-1) }}">Previous</a></li>
+                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('prev_myrecipes_page', offset=offset|int-1) }}">Previous</a></li>
                     {% else %}
-                    <li class="page-item "><a class="page-link " href="{{ url_for('prev_fish_page', offset=offset|int-1) }}">Previous</a></li>
+                    <li class="page-item "><a class="page-link " href="{{ url_for('prev_myrecipes_page', offset=offset|int-1) }}">Previous</a></li>
                     {% endif %}
                     {% if count <= (offset|int)*5 %}
-                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('next_fish_page', offset=offset|int+1) }}">Next</a></li>
+                    <li class="page-item disabled "><a class="page-link " href="{{ url_for('next_myrecipes_page', offset=offset|int+1) }}">Next</a></li>
                     {% else %}
-                    <li class="page-item "><a class="page-link " href="{{ url_for('next_fish_page', offset=offset|int+1) }}">Next</a></li>
+                    <li class="page-item "><a class="page-link " href="{{ url_for('next_myrecipes_page', offset=offset|int+1) }}">Next</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -72,6 +72,5 @@
             <a href="{{url_for('add_recipe')}}"class="waves-effect waves-light btn blue">Add Recipe</a>
         </div>
     </div>
-
 
 {% endblock %}
