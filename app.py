@@ -63,7 +63,8 @@ def add_recipe():
     return render_template('recipes/add_recipe.html', 
     allergies = mongo.db.allergies.find(),
     continents = mongo.db.continents.find(),
-    foods = mongo.db.foods.find())
+    foods = mongo.db.foods.find(),
+    users = mongo.db.users.find())
     
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
@@ -81,6 +82,7 @@ def insert_recipe():
         'recipe_instructions3': request.form.get('recipe_instructions3'),
         'recipe_instructions4': request.form.get('recipe_instructions4'),
         'allergy_name': request.form.get('allergy_name'),
+        'users': request.form.get('users'),
         'likes': 0,
         'dislikes': 0
     })
@@ -132,6 +134,7 @@ def update_recipe(recipe_id):
         'recipe_instructions3': request.form.get('recipe_instructions3'),
         'recipe_instructions4': request.form.get('recipe_instructions4'),
         'allergy_name': request.form.get('allergy_name'),
+        'users': request.form.get('users'),
         'likes': 0,
         'dislikes': 0
     })
