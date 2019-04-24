@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo, pymongo#
 from bson.objectid import ObjectId
 from flask_bcrypt import bcrypt
 import pygal
-from pygal import DefaultStyle
+from pygal.style import DefaultStyle
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'cookbook-database'
