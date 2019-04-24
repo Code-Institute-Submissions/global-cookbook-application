@@ -38,6 +38,11 @@ def register():
             return redirect(url_for('get_cookbook'))
         return render_template('authentication/registerfail.html')
     return render_template('authentication/register.html')
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 @app.route('/home')
 def home():
