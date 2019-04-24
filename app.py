@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo, pymongo#
 from bson.objectid import ObjectId
 from flask_bcrypt import bcrypt
 import pygal
+from pygal import DefaultStyle
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'cookbook-database'
@@ -462,7 +463,9 @@ def prev_myrecipes_page(offset):
     
 @app.route('/stats')
 def stats():
-    a_chart = pygal.Bar()
+    a_chart = pygal.Bar(print_values=True, style=DefaultStyle(
+                  value_font_family='helvetica',
+                  value_font_size=30))
     a_chart.title = "Recipes By Continent"
     a_chart.add("Europe", mongo.db.recipes.find({"continent_name" : "Europe"}).count())
     a_chart.add("North America", mongo.db.recipes.find({"continent_name" : "North America"}).count())
@@ -472,7 +475,9 @@ def stats():
     a_chart.add("Australia", mongo.db.recipes.find({"continent_name" : "Australia"}).count())
     chart1 = a_chart.render_data_uri()
     
-    b_chart = pygal.HorizontalBar()
+    b_chart = pygal.HorizontalBar(print_values=True, style=DefaultStyle(
+                  value_font_family='helvetica',
+                  value_font_size=30))
     b_chart.title = "Recipes By Food Type"
     b_chart.add("Beef", mongo.db.recipes.find({"food_type" : "Beef"}).count())
     b_chart.add("Chicken", mongo.db.recipes.find({"food_type" : "Chicken"}).count())
@@ -483,7 +488,9 @@ def stats():
     b_chart.add("Vegetarian", mongo.db.recipes.find({"food_type" : "Vegetarian"}).count())
     chart2 = b_chart.render_data_uri()
     
-    c_chart = pygal.Bar()
+    c_chart = pygal.Bar(print_values=True, style=DefaultStyle(
+                  value_font_family='helvetica',
+                  value_font_size=30))
     c_chart.title = "Allergens in recipes"
     c_chart.add("Lactose", mongo.db.recipes.find({'allergy_name': 'Lactose'}).count())
     c_chart.add("Peanuts", mongo.db.recipes.find({'allergy_name': 'Peanuts'}).count())
