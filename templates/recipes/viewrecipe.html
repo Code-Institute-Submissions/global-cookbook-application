@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% block content %}
+<h3 class= "center-align">{{recipes.recipe_name}}</h3>
+<div class="row">
+    <div class ="center-align">
+        <h4><strong>This is a {{recipes.food_type}} recipe and it comes from {{recipes.continent_name}} </strong></h4> 
+    </div>
+</div>
+<div class="row">
+    <h5><strong>This recipe contains the following allergen: {{recipes.allergy_name}}</strong></h5>
+    <p>This recipe serves:<strong> {{recipes.recipe_servings}}</strong></p>
+    <p>Cooking Time:<strong> {{recipes.recipe_time}}</strong></p>
+</div>
+<div class="row">               
+    <p>Ingredients: {{recipes.recipe_ingredients}}</p>
+</div>
+<div class="row">
+    <p>Instructions:</p>
+    <ul>
+        <li>1) {{recipes.recipe_instructions1}}</li>
+        <br>
+        <li>2) {{recipes.recipe_instructions2}}</li>
+        <br>
+        <li>3) {{recipes.recipe_instructions3}}</li>
+        <br>
+        <li>4) {{recipes.recipe_instructions4}}</li>
+    </ul>
+</div>
+<div class="row">
+    <p>Created by:<strong> {{recipes.users}}</strong></p>
+</div>
+<div class="row">
+       <div class="col 4">
+        <form method="POST">
+            <input class="btn btn-success" type="submit" name="likesdislikes" value="like"></input>
+        </form>
+        </div>
+        <div class="col 4">
+        <form method="POST">
+            <input class="btn btn-danger" type="submit" name="likesdislikes" value="dislike"></input>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

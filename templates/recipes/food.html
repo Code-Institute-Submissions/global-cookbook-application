@@ -2,6 +2,7 @@
 {% block content %}
 <h3 class= "center-align">All Recipes</h3>
 <div class="row">
+    <!-- Displays the number of recipes for the chosen page -->
     <div class ="col s12 m12 l9 offset-l2 ">
         {% if count > 1 or count == 0 %}
         <p>There are currently <strong> {{ count }} </strong> recipes to explore</p>
@@ -11,6 +12,7 @@
     </div>
 </div>
 {% for recipe in recipes %}
+<!-- Collapsible header that displays basic infroamtion about the recipe -->
 <div class="row body">
     <ul class="collapsible col s12 m12 l9 offset-l2 green" data-collapsible="accordion">
         <div class="collapsible-header green">
@@ -20,6 +22,7 @@
             </div>
         </div>
         <div class="collapsible-body green">
+            <!-- Collapsible body that displays more information about an individual recipe -->
             <ul>
                 <li>Ingredients: {{recipe.recipe_ingredients}}</li>
                 <br/>
@@ -33,17 +36,12 @@
                 <li>4) {{recipe.recipe_instructions4}}</li>
             </ul>
         </div>
+        <!-- Allows the user to see the fully detailed view for the recipe -->
         <div class="row">
-            <div class="col 3">
+            <div class="col 4">
                 <a href="{{url_for('view_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button deep-orange">View</a>
             </div>
-            <div class = "col 3">
-                <a href="{{url_for('edit_recipe', recipe_name = recipe._id)}}"class="waves-effect waves-light btn  food_button orange">Edit</a>
-            </div>
-            <div class="col 3">
-                <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-light btn  food_button black">Delete</a>
-            </div>
-            <div class="col 3">
+            <div class="col 4">
                 <strong>Likes: {{ recipe.likes }}</strong>
                 <strong>Dislikes: {{recipe.dislikes}}</strong>
             </div>
@@ -51,6 +49,7 @@
     </ul>
     
 {% endfor %}
+<!-- Pagination logic for the given page -->
 <div class="row">
         <div class ="col s12 m12 l9 offset-l2">
             <nav class="white">
