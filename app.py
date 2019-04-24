@@ -96,7 +96,7 @@ def view_recipe(recipe_id):
 # Route to enable user to add a new recipe to the database    
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('recipes/add_recipe.html', 
+    return render_template('recipes/addrecipe.html', 
     allergies = mongo.db.allergies.find(),
     continents = mongo.db.continents.find(),
     foods = mongo.db.foods.find(),

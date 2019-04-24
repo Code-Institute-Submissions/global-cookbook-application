@@ -11,10 +11,12 @@
         {% endif %}
     </div>
 </div>
+<div class="row body">
 {% for recipe in recipes %}
 <!-- Collapsible header that displays basic infroamtion about the recipe -->
-<div class="row body">
+
     <ul class="collapsible col s12 m12 l9 offset-l2 green" data-collapsible="accordion">
+        <li>
         <div class="collapsible-header green">
             <div class="col 12">
                 <i class="material-icons">expand_more</i>
@@ -35,6 +37,7 @@
                 <br>
                 <li>4) {{recipe.recipe_instructions4}}</li>
             </ul>
+            
         </div>
         <!-- Allows the user to see the fully detailed view for the recipe -->
         <div class="row">
@@ -46,9 +49,11 @@
                 <strong>Dislikes: {{recipe.dislikes}}</strong>
             </div>
         </div>
+        </li>
     </ul>
     
 {% endfor %}
+</div>
 <!-- Pagination logic for the given page -->
 <div class="row">
         <div class ="col s12 m12 l9 offset-l2">
@@ -75,5 +80,5 @@
             <a href="{{url_for('add_recipe')}}"class="waves-effect waves-light btn blue">Add Recipe</a>
         </div>
     </div>
-</div>
+
 {% endblock %}
