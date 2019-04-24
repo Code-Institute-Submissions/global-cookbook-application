@@ -9,6 +9,12 @@ app.config['MONGO_DBNAME'] = 'cookbook-database'
 app.config['MONGO_URI'] = "mongodb://admin1234:admin1234@ds233238.mlab.com:33238/cookbook-database"
 mongo = PyMongo(app)
 
+@app.route('/')
+def index():
+    if 'username' in session:
+        return render_template('home.html')
+    return render_template('authentication/login.html')
+
 @app.route('/login', methods = ['POST'])
 def login():
     users = mongo.db.users
@@ -18,6 +24,20 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('home'))
     return render_template('authentication/loginfail.html')
+    
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['username']})
+        
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name': request.form['username'], 'password' : hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('get_cookbook'))
+        return render_template('authentication/registerfail.html')
+    return render_template('authentication/register.html')
 
 @app.route('/home')
 def home():

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row" method = "POST">
+    <h2 class= "center-align">Registration Failed</h2>
+    <h4 class= "center-align">You have entered a username that already exists</h4>
+    
+    <h5 class="center-align">
+        Please try to <a href="{{ url_for('register') }}"><strong class="red-text">Register</strong></a> again!
+    </h5>
+</div>
+{% endblock %}

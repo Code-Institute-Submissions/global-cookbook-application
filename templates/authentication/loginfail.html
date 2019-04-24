@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row" method = "POST">
+    <h2 class= "center-align">Login Failed</h2>
+    <h4 class= "center-align">You have entered the incorrect username or password</h4>
+    <h5 class="center-align">
+        Please try to <a href="{{ url_for('index') }}"><strong class="red-text">Login</strong></a> again!
+    </h5>
+</div>
+{% endblock %}

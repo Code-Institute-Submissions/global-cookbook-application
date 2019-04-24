@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-    <h2 class= "center-align ">Login</h2>
-    <h4 class= "center-align">Please login to begin your culinary adventure</h4>
-    <form method = "POST" action = "{{url_for ('login') }}" class="col s12">
+    <h2 class= "center-align">Register</h2>
+    <form method = POST action = "{{url_for ('register') }}" class="col s12">
         <div class="row">
             <div class="input-field col s4 offset-s4">
                 <input name = "username" id='username' type="text" class="validate">
@@ -13,17 +12,17 @@
         <div class="row">
             <div class="input-field col s4 offset-s4">
                 <input name="password" id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                <label for="password" >Password</label>
             </div>
         </div>
         <div class = "row">
             <div class= "col s4 offset-s4">
-                <button class="btn waves-effect waves-light btn-small center-align blue" type="submit" name="action">Login</button>
+                <button class="btn waves-effect waves-light btn-small center-align blue" type="submit" name="action">Register</button>
             </div>
         </div>
     </form>
     <div class="col s4 offset-s4">
-        Don't have an account? <a class="red-text" href="{{ url_for('register') }}"><strong>Register now</strong></a>
+        Already have an account? <a href="{{ url_for('index') }}"><strong class="red-text">Login Now</strong></a>
     </div>
 </div>
 {% endblock %}
