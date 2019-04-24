@@ -270,3 +270,171 @@ def vegan():
     offset = offset,
     count = mongo.db.recipes.find({"food_type" : "Vegan"}).count(),
     recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).sort('recipe_name', pymongo.ASCENDING).limit(4))
+    
+@app.route('/page<offset>', methods=['POST', 'GET'])
+def next_page(offset):
+    count = mongo.db.recipes.find().count()
+    recipes = mongo.db.recipes.find().skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('recipes/food.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/page<offset>', methods=['POST', 'GET'])
+def prev_page(offset):
+    count = mongo.db.recipes.find().count()
+    recipes = mongo.db.recipes.find().skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('recipes/food.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/europe<offset>', methods=['POST', 'GET'])
+def next_europe_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Europe"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Europe"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/europe.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/europe<offset>', methods=['POST', 'GET'])
+def prev_europe_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Europe"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Europe"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/europe.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/namerica<offset>', methods=['POST', 'GET'])
+def next_namerica_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "North America"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "North America"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/namerica.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/namerica<offset>', methods=['POST', 'GET'])
+def prev_namerica_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "North America"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "North America"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/namerica.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/samerica<offset>', methods=['POST', 'GET'])
+def next_samerica_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "South America"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "South America"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/samerica.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/samerica<offset>', methods=['POST', 'GET'])
+def prev_samerica_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "South America"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "South America"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/samerica.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/asia<offset>', methods=['POST', 'GET'])
+def next_asia_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Asia"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Asia"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/asia.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/asia<offset>', methods=['POST', 'GET'])
+def prev_asia_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Asia"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Asia"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/asia.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/africa<offset>', methods=['POST', 'GET'])
+def next_africa_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Africa"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Africa"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/africa.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/africa<offset>', methods=['POST', 'GET'])
+def prev_africa_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Africa"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Africa"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/africa.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/australia<offset>', methods=['POST', 'GET'])
+def next_australia_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Australia"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Australia"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/australia.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/australia<offset>', methods=['POST', 'GET'])
+def prev_australia_page(offset):
+    count = mongo.db.recipes.find({"continent_name" : "Australia"}).count()
+    recipes = mongo.db.recipes.find({"continent_name" : "Australia"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('continents/australia.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/beef<offset>', methods=['POST', 'GET'])
+def next_beef_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Beef"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Beef"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/beef.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/beef<offset>', methods=['POST', 'GET'])
+def prev_beef_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Beef"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Beef"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/beef.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/chicken<offset>', methods=['POST', 'GET'])
+def next_chicken_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Chicken"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Chicken"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/chicken.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/chicken<offset>', methods=['POST', 'GET'])
+def prev_chicken_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Chicken"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Chicken"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/chicken.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/fish<offset>', methods=['POST', 'GET'])
+def next_fish_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Fish"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Fish"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/fish.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/fish<offset>', methods=['POST', 'GET'])
+def prev_fish_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Fish"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Fish"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/fish.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/lamb<offset>', methods=['POST', 'GET'])
+def next_lamb_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Lamb"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Lamb"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/lamb.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/lamb<offset>', methods=['POST', 'GET'])
+def prev_lamb_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Lamb"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Lamb"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/lamb.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/pork<offset>', methods=['POST', 'GET'])
+def next_pork_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Pork"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Pork"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/pork.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/pork<offset>', methods=['POST', 'GET'])
+def prev_pork_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Pork"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Pork"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/pork.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/vegan<offset>', methods=['POST', 'GET'])
+def next_vegan_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Vegan"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/vegan.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/vegan<offset>', methods=['POST', 'GET'])
+def prev_vegan_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Vegan"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Vegan"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/vegan.html', recipes=recipes, offset=offset, count=count)
+    
+@app.route('/vegetarian<offset>', methods=['POST', 'GET'])
+def next_vegetarian_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Vegetarian"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Vegetarian"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/vegetarian.html', recipes=recipes, offset=offset, count=count)
+
+@app.route('/vegertarian<offset>', methods=['POST', 'GET'])
+def prev_vegetarian_page(offset):
+    count = mongo.db.recipes.find({"food_type" : "Vegetarian"}).count()
+    recipes = mongo.db.recipes.find({"food_type" : "Vegetarian"}).skip((int(offset)-1) * 4).sort("recipe_name", pymongo.ASCENDING).limit(4)
+    return render_template('foodtype/vegetarian.html', recipes=recipes, offset=offset, count=count)
