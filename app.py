@@ -523,7 +523,7 @@ def stats():
     c_chart.add("Lactose", mongo.db.recipes.find({'allergy_name': 'Lactose'}).count())
     c_chart.add("Peanuts", mongo.db.recipes.find({'allergy_name': 'Peanuts'}).count())
     c_chart.add("Gluten", mongo.db.recipes.find({'allergy_name': 'Gluten'}).count())
-    c_chart.add("Sesemee Seeds", mongo.db.recipes.find({'allergy_name': 'Sessemee seeds'}).count())
+    c_chart.add("Sesame Seeds", mongo.db.recipes.find({'allergy_name': 'Sesame Seeds'}).count())
     c_chart.add("Seafood", mongo.db.recipes.find({'allergy_name': 'Seafood'}).count())
     c_chart.add("Beans", mongo.db.recipes.find({'allergy_name' : 'Beans'}).count())
     
